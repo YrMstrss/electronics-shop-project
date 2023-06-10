@@ -23,3 +23,30 @@ def test_apply_discount():
     
     assert test_item_1.price == 899.991
     assert test_item_2.price == 45
+
+
+def test_name():
+    assert test_item_1.name == 'test_1'
+    assert test_item_2.name == 'test_2'
+
+    test_item_1.name = 'new_1'
+    test_item_2.name = 'new_test_name_2'
+
+    assert test_item_1.name == 'new_1'
+    assert test_item_2.name == 'test_2'
+
+
+def test_instantiate_from_csv():
+    Item.instantiate_from_csv()
+    assert len(Item.all) == 5
+
+    item1 = Item.all[3]
+    assert item1.name == 'Мышка'
+    assert item1.price == 50
+    assert item1.quantity == 5
+
+
+def test_string_to_number():
+    assert Item.string_to_number('5') == 5
+    assert Item.string_to_number('20.4') == 20
+    assert Item.string_to_number('0') == 0
